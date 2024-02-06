@@ -1,27 +1,25 @@
+from .interface.Icalculator import ICalculator
 from src.drivers import calculator_manager
 from typing import Dict
+from src.main.http_types.http_response import HttpResponse
+from src.main.http_types.http_request import HttpRequest
 
-class Calculator1Controller:
- 
-    # def calculator_1(self, input_numbers: list) -> Dict:
-    #     calculation = calculator_manager.CalculationManager()
-    #     result = calculation.avg_calculation(input_numbers)
-    #     return_dict = {
-    #         "calculadora": "CALCULADORA 1",
-    #         "input": input_numbers,
-    #         "resultado do calculo": result
-    #     }
-    #     return return_dict
-    
-    CONST = 0.257
+class Calculator1Controller(ICalculator):
 
-    def calculator_1(self, input_number: int) -> Dict:
+    def execute(self, req: HttpRequest, input_number: int) -> HttpResponse:
+        result_dict = self.__calculator_1(input_number)
+        return HttpResponse(203, result_dict)
+
+
+    def __calculator_1(self, input_number: int) -> Dict:
 
         part_1 = input_number/3
         part_2 = input_number/3
         part_3 = input_number/3
 
-        result_part_1 = (part_1/4+7)**0.5*self.CONST
+        __CONST = 0.257
+
+        result_part_1 = (part_1/4+7)**0.5*__CONST
         result_part_2 = (part_2**2.121 / 5) + 1
         result_part_3 = part_3
 
