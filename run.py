@@ -1,4 +1,4 @@
-from src.main.process_handle import start
+from src.main.server.server import app
 
 if __name__ == "__main__":
-    start()
+    app.run(host="0.0.0.0", port=5007)
