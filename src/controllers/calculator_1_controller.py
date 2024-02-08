@@ -6,7 +6,9 @@ from src.main.http_types.http_request import HttpRequest
 
 class Calculator1Controller(ICalculator):
 
-    def execute(self, req: HttpRequest, input_number: int) -> HttpResponse:
+    def execute(self, req: HttpRequest) -> HttpResponse:
+        body = req.body
+        input_number = body["number"]
         result_dict = self.__calculator_1(input_number)
         return HttpResponse(203, result_dict)
 
